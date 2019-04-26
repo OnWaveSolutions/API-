@@ -1,52 +1,52 @@
 const boom = require('boom');
-const Condominium = require('../models/condominiums');
+const Company = require('../models/companies');
 
-exports.getCondos = async (req, reply) => {
+exports.getCompanies = async (req, reply) => {
     try {
-        const condo = await Condominium.find({})
-        return condo
+        const company = await Company.find()
+        return company
     } catch (error) {
         throw boom.boomify(error)
     }
 }
 
-exports.getSingleCondo = async (req, reply) => {
+exports.getSingleCompany = async (req, reply) => {
     try {
         const id = req.params.id
-        const condo = await Condominium.findById(id)
-        return condo
+        const company = await Company.findById(id)
+        return company
     } catch (error) {
         throw boom.boomify(error)
     }
 }
 
-exports.createCondo = async (req, reply) => {
+exports.createCompany = async (req, reply) => {
     return new Promise((resolver, reject) => {
-        const condo = new Condominium(req.body);
-        const saveCondo = cb => (err, condo) => {
+        const company = new Company(req.body);
+        const saveCompany = cb => (err, condo) => {
             if (err) {
                 reject(err);
                 return
             }
-            cb(condo);
+            cb(company);
         }
-        const findCondo = record => {
-            Condominium.find(record, (err, [admin]) => {
+        const findCompany = record => {
+            Company.find(record, (err, [fCompany]) => {
                 if (err) {
                     reject(err);
                     return
                 }
-                reply.header("location", `condo/${condo._id}`);
-                resolver({...JSON.parse(JSON.stringify(condo)), password: null})
+                reply.header("location", `company/${fCompany._id}`);
+                resolver({...JSON.parse(JSON.stringify(fCompany)), password: null})
             })
         }
-        condo.save((findCondo))
+        condo.save(savecondo(findCompany))
     })
 }
-
-exports.updateCondo = async (req, reply) => {
+/*
+exports.updateCompany = async (req, reply) => {
     try { 
-        Condominium.findById(req.params.id, function (err, condo) {
+        Company.findById(req.params.id, function (err, condo) {
             if (err)
                 res.send(err);
             condo.firstName = req.body.firstName;
@@ -66,12 +66,12 @@ exports.updateCondo = async (req, reply) => {
         throw boom.boomify(error)
     }
 } 
-
-exports.deleteCondo = async (req, reply) => {
+*/
+exports.deleteCompany = async (req, reply) => {
     try {
         const id = req.params.id
-        const condo = await Condominium.findByIdAndRemove(id)
-        return condo 
+        const company = await Company.findByIdAndRemove(id)
+        return company
     } catch (error) {
         throw boom.boomify(error)
     }
@@ -80,8 +80,8 @@ exports.deleteCondo = async (req, reply) => {
 exports.deleteAll = async (req, reply) => {
     // dev 
   try{
-        const condo = Condominium.deleteMany({});
-        return condo; 
+        const company = Company.deleteMany({});
+        return company; 
     } catch (error) {
         throw boom.boomify(error);
     }

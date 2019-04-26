@@ -22,18 +22,8 @@ const CondominiumSchema = new Schema({
     },
     updatedBy: {
         type: String
-    },
-    manager: [{ type: Schema.Types.ObjectId, ref: 'Users'}]
-}, { versionKey: false })
-
-const RolesSchema = new mongoose.Schema({
-    value: {
-        type: String
-    },
-    type: {
-        type: String
     }
 }, { versionKey: false })
 
 const Condominium = mongoose.model("Condominium", CondominiumSchema);
-
+module.exports = Condominium;

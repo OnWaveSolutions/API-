@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const state = ['active', 'awaiting activation']
 const CompaniesSchema = new mongoose.Schema({
     name: {
         type: String

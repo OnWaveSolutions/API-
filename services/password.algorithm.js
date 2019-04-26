@@ -1,11 +1,9 @@
-const request = require('request-promise-native');
-
 class Base64Algorithm {
     constructor() {
            const secret = Buffer.from(".$e#%");
            const start = Buffer.from("securestart1$").toString('base64');
            const safeChar = Buffer.from("OneivwxOluzi0nz").toString('base64');
-           const encodeOne = Buffer.from(`${safeChar}javishascoolpassword${secret}`).toString('base64')
+           const encodeOne = Buffer.from(`${safeChar}rs45t${secret}`).toString('base64')
 
 
            const formula = `${encodeOne}`
@@ -20,3 +18,4 @@ class Base64Algorithm {
     }
 }
 new Base64Algorithm();
+

@@ -1,4 +1,5 @@
-const SiteController = require('../controllers/SiteController');
+const UserController = require('../controllers/UserController');
+const CompanyController = require('../controllers/CompanyController');
 const CondominiumController = require('../controllers/CondominiumController');
 const passport = require('passport');
 const custom = require('../middleware/custom');
@@ -9,27 +10,27 @@ const routes = [
     {
         method: 'GET',
         url: '/users',
-        handler: SiteController.getAll
+        handler: UserController.getAll
     },
     {
         method: 'GET',
         url: '/users/:id',
-        handler: SiteController.getSingleUser
+        handler: UserController.getSingleUser
     },
     {
         method: 'POST',
         url: '/users',
-        handler: SiteController.createUser
+        handler: UserController.createUser
     },
     {
         method: 'PUT',
         url: '/users/:id',
-        handler: SiteController.updateUser
+        handler: UserController.updateUser
     },
     {
         method: 'DELETE',
         url: '/users/:id',
-        handler: SiteController.deleteUser
+        handler: UserController.deleteUser
     },
     {
         method: 'GET',
@@ -59,17 +60,27 @@ const routes = [
     {
         method: 'GET',
         url: '/deletall',
-        handler: SiteController.deleteAll
+        handler: UserController.deleteAll
     },
     {
         method: 'POST',
         url: '/users/register',
-        handler: SiteController.register
+        handler: UserController.register
     },
     {
         method: 'GET',
         url: '/api/users',
-        handler: SiteController.create
+        handler: UserController.create
+    },
+    {
+        method: 'GET',
+        url: '/companies',
+        handler: CompanyController.getCompanies
+    },
+    {
+        method: 'GET',
+        url: '/companies/:id',
+        handler: CompanyController.getSingleCompany
     }
 ]
 
